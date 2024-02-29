@@ -29,9 +29,3 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean verify -Denvironment=default
-
-      - name: Upload Serenity Report as Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: serenity-report
-          path: target/site/serenity/
