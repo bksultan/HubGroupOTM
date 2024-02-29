@@ -17,7 +17,7 @@ This project supports running tests for two modules: LGS and IML. Below are the 
 To run tests in the IML module, use the following Maven command and specify the environment **default(ua)** or **qa**:
 
 ```bash
-mvn clean verify -Denvironment=default
+mvn clean verify -Denvironment=ua
 ```
 
 Before running the tests **locally**, ensure to configure your test environment correctly. The project uses **example.secrets.properties** as a template for environment configuration. 
