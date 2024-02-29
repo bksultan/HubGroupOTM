@@ -8,16 +8,24 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 17
-      uses: actions/setup-java@v2
-      with:
-        java-version: '17'
-        distribution: 'adopt'
-        cache: maven
-    - name: Build with Maven
-      run: mvn clean verify -Denvironment=default
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: maven
+
+      - name: Create secrets.properties
+        run: |
+          mkdir -p src/test/resources/data/
+          echo "username=${{ secrets.USERNAME }}" > src/test/resources/data/secrets.properties
+          echo "password=${{ secrets.PASSWORD }}" >> src/test/resources/data/secrets.properties
+        shell: bash
+
+      - name: Build with Maven
+        run: mvn clean verify -Denvironment=default

@@ -28,6 +28,17 @@ public class Utilities {
         }
     }
 
+    public static String getSecret(String key) {
+        try {
+            Properties properties = readPropertyFile("src/test/resources/data/secrets.properties");
+            String value = properties.getProperty(key);
+            return value;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
     public static void attachToReport(String title, String message) {
         Serenity.recordReportData().withTitle(title).andContents(message);
     }

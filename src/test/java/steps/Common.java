@@ -12,6 +12,7 @@ import pages.OrderReleasePage;
 
 import static pages.OrderReleasePage.getWebElementMainIframe;
 import static utilities.Utilities.getProperty;
+import static utilities.Utilities.getSecret;
 import static utilities.WebInteractionsUtils.clickInMainIframe;
 import static utilities.WebInteractionsUtils.waitClickable;
 
@@ -27,8 +28,8 @@ public class Common extends PageObject {
         openAt(EnvironmentSpecificConfiguration.from(environmentVariables).getProperty("webdriver.base.url"));
         getDriver().manage().window().maximize();
 
-        waitClickable(loginPage.username).sendKeys(getProperty("username"));
-        waitClickable(loginPage.password).sendKeys(getProperty("password"));
+        waitClickable(loginPage.username).sendKeys(getSecret("username"));
+        waitClickable(loginPage.password).sendKeys(getSecret("password"));
         waitClickable(loginPage.signInBtn).click();
     }
 

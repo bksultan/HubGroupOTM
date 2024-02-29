@@ -1,6 +1,7 @@
 target/
 build
 .github
+secrets.properties
 out
 .gradle
 pom.xml.tag
