@@ -20,17 +20,36 @@ To run tests in the IML module, use the following Maven command and specify the 
 mvn clean verify -Denvironment=default
 ```
 
-Before running the tests, ensure to configure your test environment correctly. The project uses `example.config.properties` as a template for environment configuration. Duplicate this file and rename it (e.g., to `config.properties`) and adjust the properties to match your test environment.
+Before running the tests **locally**, ensure to configure your test environment correctly. The project uses **example.secrets.properties** as a template for environment configuration. 
+Duplicate this file and rename it **(e.g., to secrets.properties)** and adjust the properties to match your test environment.
 
-### Configuration
+Configuration
+The **example.secrets.properties** file contains various settings that you need to adjust according to your test environment
 
-The `example.config.properties` file contains various settings that you need to adjust according to your test environment, such as:
+## Setting Up GitHub Secrets
 
-- Webdriver paths
-- Base URLs for the application under test
-- Any other environment-specific settings
+This project requires certain sensitive information, such as usernames and passwords, to be set as secrets within GitHub to ensure secure handling of such data. Follow the steps below to add these secrets to your GitHub repository:
 
-Ensure that you review and update these configurations before running your tests.
+### Step 1: Navigate to Your Repository's Settings
+
+1. Go to your GitHub repository.
+2. Click on the **Settings** tab.
+3. On the left sidebar, click on **Secrets & variables**.
+4. Choose **Actions** under the "Secrets" section.
+
+### Step 2: Add the Required Secrets
+
+You need to add two secrets: one for the `username` and another for the `password`. Perform the following for each:
+
+1. Click on **New repository secret**.
+2. In the **Name** field, enter `USERNAME` for the username secret or `PASSWORD` for the password secret.
+3. In the **Value** field, enter the actual username or password that the CI/CD process should use.
+4. Click **Add secret**.
+
+### Step 3: Use the Secrets in the GitHub Actions Workflow
+
+The secrets you've added (`USERNAME` and `PASSWORD`) can now be accessed in your GitHub Actions workflow files. They are used to dynamically generate a `secrets.properties` file during the CI/CD process, ensuring your sensitive information remains secure.
+
 
 ## Branch Naming Convention
 
